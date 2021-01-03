@@ -75,9 +75,9 @@
   </div>
 
   <div class="p-5 text-center result" *ngIf="personCount$ | async as personCount">
-    <div class="result-number">{{ personCount | number:'.0-0' }}</div>
+    <div class="result-number">{{ personCount / 1000000 | number:'.0-1' }}M</div>
     <div class="result-explanation">
-      personnes seront vaccinées à à la fin de la campagne,<br/>
+      (millions) de personnes seront vaccinées à à la fin de la campagne,<br/>
       soit {{ personsPerMonth(personCount) | number:'.0-0' }} par mois
     </div>
   </div>
