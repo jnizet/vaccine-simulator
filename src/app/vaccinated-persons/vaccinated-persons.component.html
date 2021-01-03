@@ -1,0 +1,84 @@
+<p>
+  Faites varier les paramètres, et voyez combien de personnes pourront être vaccinées.
+</p>
+
+<form [formGroup]="form">
+  <h2>Temps de consultation</h2>
+  <div class="form-row">
+    <div class="col-md-4 form-group">
+      <label for="pre-consultation">Pré-consultation</label>
+      <div class="input-group">
+        <input formControlName="preConsultation" id="pre-consultation" type="number" class="form-control" min="0">
+        <div class="input-group-append">
+          <span class="input-group-text">minutes</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 form-group">
+      <label for="first-vaccination">Administration de la première dose</label>
+      <div class="input-group">
+        <input formControlName="firstVaccination" id="first-vaccination" type="number" class="form-control" min="1">
+        <div class="input-group-append">
+          <span class="input-group-text">minutes</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 form-group">
+      <label for="second-vaccination">Administration de la deuxième dose</label>
+      <div class="input-group">
+        <input formControlName="secondVaccination" id="second-vaccination" type="number" class="form-control" min="1">
+        <div class="input-group-append">
+          <span class="input-group-text">minutes</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Objectifs</h2>
+  <div class="form-row">
+    <div class="col-md-4 form-group">
+      <label for="vaccinating-persons">Nombre de personnes vaccinantes</label>
+      <div class="input-group">
+        <input formControlName="vaccinatingPersons" id="vaccinating-persons" type="number" class="form-control" min="0" step="100">
+        <div class="input-group-append">
+          <span class="input-group-text">personnes</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 form-group">
+      <label for="months">Durée de la campagne</label>
+      <div class="input-group">
+        <input formControlName="months" id="months" type="number" class="form-control" min="1">
+        <div class="input-group-append">
+          <span class="input-group-text">mois</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 form-group">
+      <label for="hours-per-month">Heures assignées à la vaccination par mois</label>
+      <div class="input-group">
+        <input formControlName="hoursPerMonth" id="hours-per-month" type="number" class="form-control" min="1" max="160">
+        <div class="input-group-append">
+          <span class="input-group-text">heures</span>
+        </div>
+      </div>
+      <small class="form-text text-muted">
+        Nombre d'heures que chaque personne vaccinante passe, en moyenne, par mois, exclusivement à la vaccination.
+        <br/>
+        130 heures par mois est un temps-plein, exclusivement dédié à la vaccination.
+      </small>
+    </div>
+  </div>
+
+  <div class="p-5 text-center result" *ngIf="personCount$ | async as personCount">
+    <div class="result-number">{{ personCount | number:'.0-0' }}</div>
+    <div class="result-explanation">
+      personnes seront vaccinées à à la fin de la campagne,<br/>
+      soit {{ personsPerMonth(personCount) | number:'.0-0' }} par mois
+    </div>
+  </div>
+</form>

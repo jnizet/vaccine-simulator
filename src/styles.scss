@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'src/custom-bootstrap';
+
+.result {
+  background-color: $dark;
+  color: $white;
+}
+
+.result-number {
+  font-size: 80px;
+  font-weight: 600;
+  letter-spacing: 0.3rem;
+}
+
+.result-explanation {
+  font-size: large;
+  padding-top: 1rem;
+}
